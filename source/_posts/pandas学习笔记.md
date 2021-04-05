@@ -1,4 +1,8 @@
-##### 批量读取csv文件
+---
+title：批量读取csv文件
+---
+# 批量读取csv文件
+### 1.批量读取csv文件
 
 ```python
 import pandas as pd
@@ -20,7 +24,7 @@ for file in os.listdir():
     final = pd.concat([final,df],axis=1)
 ```
 
-##### 表合并
+### 2.表合并
 
 * concat（沿轴合并——就硬拼在一起）
 

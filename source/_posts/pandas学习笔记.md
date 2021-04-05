@@ -1,9 +1,9 @@
 ---
-title: 批量读取csv文件
+title: pandas学习笔记
 ---
 
-# 批量读取csv文件
 
+# pandas学习笔记
 
 
 ### 1.批量读取csv文件

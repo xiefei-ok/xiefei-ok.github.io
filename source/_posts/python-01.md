@@ -1,5 +1,7 @@
 ---
 title: python基础知识-01
+date: 2021-03-05 02:06:53
+tags: python_basic
 ---
 
 

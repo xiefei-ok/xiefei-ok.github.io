@@ -1,6 +1,6 @@
 ---
 title: python基础知识-02
-date: 2021-03-05 02:06:53
+date: 2021-03-06 03:06:53
 tags: python_basic
 ---
 # 数据结构

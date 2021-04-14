@@ -141,6 +141,15 @@ open_graph:
 disqus:
   enabled: false
   shortname: cactus-1
+  count: false
+# gittalk
+gitalk:
+    enabled: true # 开关开启
+    owner: xiefei-ok # 你的 github 用户名
+    repo: xiefei-ok.github.io # 保存评论的 repo 库
+    admin: ['xiefei-ok'] # 管理员，你的 github 用户名
+    clientID: f3798d7d06bc21e9f44b
+    clientSecret: 822c1e66b03c458404071a9bf8fb7101cf61ee80
 
 # Fill in your Google Analytics tracking ID to enable Google Analytics.
 google_analytics:

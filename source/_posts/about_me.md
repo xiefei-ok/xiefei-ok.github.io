@@ -1,3 +1,11 @@
+---
+title: pandas学习笔记
+date: 2021-03-01 02:06:53
+tags: pandas
+---
+
+<meta name="referrer" content="no-referrer" />
+
 # 1. tableau 部分成果展示
 https://public.tableau.com/app/profile/xiefei
 

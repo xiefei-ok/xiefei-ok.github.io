@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="数据结构1.列表主要用法有以下：    Python 表达式 结果 描述    len([1, 2,  3]) 3 长度   [1, 2, 3] +  [4, 5, 6] [1, 2, 3,  4, 5, 6] 组合   [‘Hi!’] * 4 [‘Hi!’,  ‘Hi!’, ‘Hi!’, ‘Hi!’] 重复   3 in [1, 2,  3] True 元素是否存在于列表中   for x in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python基础知识-02">
+<meta property="og:url" content="http://example.com/2021/03/06/python-02/index.html">
+<meta property="og:site_name" content="Flynn的小屋">
+<meta property="og:description" content="数据结构1.列表主要用法有以下：    Python 表达式 结果 描述    len([1, 2,  3]) 3 长度   [1, 2, 3] +  [4, 5, 6] [1, 2, 3,  4, 5, 6] 组合   [‘Hi!’] * 4 [‘Hi!’,  ‘Hi!’, ‘Hi!’, ‘Hi!’] 重复   3 in [1, 2,  3] True 元素是否存在于列表中   for x in">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-05T19:06:53.000Z">
+<meta property="article:modified_time" content="2021-04-13T18:33:27.696Z">
+<meta property="article:author" content="which_fly">
+<meta property="article:tag" content="python_basic">
+<meta name="twitter:card" content="summary">
+        
+            
+                
+                    
+                                        <link rel="shortcut icon" href="/images/favicon.ico">
+                                        
+                                            
+                                                
+                                                    
+                                                                        <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+                                                                        
+                                                                            
+                                                                                
+                                                                                    
+                                                                                                        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+                                                                                                        
+                                                                                                            
+                                                                                                                
+                                                                                                                    <!-- title -->
+                                                                                                                    <title>
+                                                                                                                        python基础知识-02
+                                                                                                                    </title>
+                                                                                                                    <!-- styles -->
+                                                                                                                    
+<link rel="stylesheet" href="/css/style.css">
+
+                                                                                                                        <!-- persian styles -->
+                                                                                                                        
+                                                                                                                                    <!-- rss -->
+                                                                                                                                    
+                                                                                                                                                
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇 " href="/2021/08/30/about_me/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2021/03/05/python-01/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/03/06/python-02/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/03/06/python-02/&text=python基础知识-02"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/03/06/python-02/&is_video=false&description=python基础知识-02"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python基础知识-02&body=Check out this article: http://example.com/2021/03/06/python-02/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/03/06/python-02/&name=python基础知识-02&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/03/06/python-02/&t=python基础知识-02"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%97%E8%A1%A8"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%83%E7%BB%84"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AD%97%E5%85%B8"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. 字典</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        
+    <h1 class="posttitle" itemprop="name headline">
+        python基础知识-02
+    </h1>
+
+
+
+            <div class="meta">
+                <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">which_fly</span>
+                </span>
+                
+    <div class="postdate">
+      
+        <time datetime="2021-03-05T19:06:53.000Z" itemprop="datePublished">2021-03-06</time>
+        
+        (Updated: <time datetime="2021-04-13T18:33:27.696Z" itemprop="dateModified">2021-04-14</time>)
+        
+      
+    </div>
+
+
+                    
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/python-basic/" rel="tag">python_basic</a>
+    </div>
+
+
+            </div>
+    </header>
+    
+
+        <div class="content" itemprop="articleBody">
+            <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h3 id="1-列表"><a href="#1-列表" class="headerlink" title="1.列表"></a>1.列表</h3><p>主要用法有以下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Python 表达式</strong></th>
+<th><strong>结果</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len([1, 2,  3])</td>
+<td>3</td>
+<td>长度</td>
+</tr>
+<tr>
+<td>[1, 2, 3] +  [4, 5, 6]</td>
+<td>[1, 2, 3,  4, 5, 6]</td>
+<td>组合</td>
+</tr>
+<tr>
+<td>[‘Hi!’] * 4</td>
+<td>[‘Hi!’,  ‘Hi!’, ‘Hi!’, ‘Hi!’]</td>
+<td>重复</td>
+</tr>
+<tr>
+<td>3 in [1, 2,  3]</td>
+<td>True</td>
+<td>元素是否存在于列表中</td>
+</tr>
+<tr>
+<td>for x in  [1, 2, 3]: print x,</td>
+<td>1 2 3</td>
+<td>迭代</td>
+</tr>
+</tbody></table>
+<p>索引取数的方法：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Python 表达式</strong></th>
+<th><strong>结果</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L[2]</td>
+<td>‘Taobao’</td>
+<td>读取列表中第三个元素</td>
+</tr>
+<tr>
+<td>L[-2]</td>
+<td>‘Runoob’</td>
+<td>读取列表中倒数第二个元素</td>
+</tr>
+<tr>
+<td>L[1:]</td>
+<td>[‘Runoob’,  ‘Taobao’]</td>
+<td>从第二个元素开始截取列表</td>
+</tr>
+</tbody></table>
+<p>常用的函数：</p>
+<table>
+<thead>
+<tr>
+<th><strong>表达式</strong></th>
+<th><strong>意义</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cmp(list1,  list2)</code></td>
+<td>比较两个列表的元素</td>
+</tr>
+<tr>
+<td><code>len(list)</code></td>
+<td>列表元素个数</td>
+</tr>
+<tr>
+<td><code>max(list)</code></td>
+<td>返回列表元素最大值</td>
+</tr>
+<tr>
+<td><code>min(list)</code></td>
+<td>返回列表元素最小值</td>
+</tr>
+<tr>
+<td><code>list(seq)</code></td>
+<td>将元组转换为列表</td>
+</tr>
+</tbody></table>
+<p>常用的方法：</p>
+<table>
+<thead>
+<tr>
+<th><strong>表达式</strong></th>
+<th><strong>方法</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>list.append(obj)</code></td>
+<td>在列表末尾添加新的对象</td>
+</tr>
+<tr>
+<td><code>list.count(obj)</code></td>
+<td>统计某个元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td><code>list.extend(seq)</code></td>
+<td>在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</td>
+</tr>
+<tr>
+<td><code>list.index(obj)</code></td>
+<td>从列表中找出某个值第一个匹配项的索引位置</td>
+</tr>
+<tr>
+<td><code>list.insert(index,  obj)</code></td>
+<td>将对象插入列表</td>
+</tr>
+<tr>
+<td><code>list.pop([index=-1])</code></td>
+<td>移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td>
+</tr>
+<tr>
+<td><code>list.remove(obj)</code></td>
+<td>移除列表中某个值的第一个匹配项</td>
+</tr>
+<tr>
+<td><code>list.reverse()</code></td>
+<td>反向列表中元素</td>
+</tr>
+<tr>
+<td><code>list.sort(cmp=None,  key=None, reverse=False)</code></td>
+<td>对原列表进行排序</td>
+</tr>
+</tbody></table>
+<h3 id="2-元组"><a href="#2-元组" class="headerlink" title="2. 元组"></a>2. 元组</h3><p>元组就是不可更改的列表</p>
+<p>主要用法如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Python 表达式</strong></th>
+<th><strong>结果</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>len((1, 2,  3))</td>
+<td>3</td>
+<td>计算元素个数</td>
+</tr>
+<tr>
+<td>(1, 2, 3) +  (4, 5, 6)</td>
+<td>(1, 2, 3,  4, 5, 6)</td>
+<td>连接</td>
+</tr>
+<tr>
+<td>(‘Hi!’,) *  4</td>
+<td>(‘Hi!’,  ‘Hi!’, ‘Hi!’, ‘Hi!’)</td>
+<td>复制</td>
+</tr>
+<tr>
+<td>3 in (1, 2,  3)</td>
+<td>True</td>
+<td>元素是否存在</td>
+</tr>
+<tr>
+<td>for x in  (1, 2, 3): print x,</td>
+<td>1 2 3</td>
+<td>迭代</td>
+</tr>
+</tbody></table>
+<p>索引取数的方法同列表类似：</p>
+<table>
+<thead>
+<tr>
+<th><strong>Python 表达式</strong></th>
+<th><strong>结果</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L[2]</td>
+<td>‘SPAM!’</td>
+<td>读取第三个元素</td>
+</tr>
+<tr>
+<td>L[-2]</td>
+<td>‘Spam’</td>
+<td>反向读取，读取倒数第二个元素</td>
+</tr>
+<tr>
+<td>L[1:]</td>
+<td>(‘Spam’,  ‘SPAM!’)</td>
+<td>截取元素</td>
+</tr>
+</tbody></table>
+<p>常用的函数：</p>
+<table>
+<thead>
+<tr>
+<th><strong>表达式</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cmp(tuple1,  tuple2)</code></td>
+<td>比较两个元组元素。</td>
+</tr>
+<tr>
+<td><code>len(tuple)</code></td>
+<td>计算元组元素个数。</td>
+</tr>
+<tr>
+<td><code>max(tuple)</code></td>
+<td>返回元组中元素最大值。</td>
+</tr>
+<tr>
+<td><code>min(tuple)</code></td>
+<td>返回元组中元素最小值。</td>
+</tr>
+<tr>
+<td><code>tuple(seq)</code></td>
+<td>将列表转换为元组。</td>
+</tr>
+</tbody></table>
+<h3 id="3-字典"><a href="#3-字典" class="headerlink" title="3. 字典"></a>3. 字典</h3><p>字典是python用的比较多的一种灵活的数据结构</p>
+<p>常用函数：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cmp(dict1,  dict2)</code></td>
+<td>比较两个字典元素。</td>
+</tr>
+<tr>
+<td><code>len(dict)</code></td>
+<td>计算字典元素个数，即键的总数。</td>
+</tr>
+<tr>
+<td><code>str(dict)</code></td>
+<td>输出字典可打印的字符串表示。</td>
+</tr>
+<tr>
+<td><code>type(variable)</code></td>
+<td>返回输入的变量类型，如果变量是字典就返回字典类型。</td>
+</tr>
+</tbody></table>
+<p>常用的方法：</p>
+<table>
+<thead>
+<tr>
+<th>表达式</th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dict.clear()</code></td>
+<td>删除字典内所有元素</td>
+</tr>
+<tr>
+<td><code>dict.copy()</code></td>
+<td>返回一个字典的浅复制</td>
+</tr>
+<tr>
+<td><code>dict.fromkeys(seq[,  val])</code></td>
+<td>创建一个新字典，以序列 seq 中元素做字典的键，val 为字典所有键对应的初始值</td>
+</tr>
+<tr>
+<td><code>dict.get(key,  default=None)</code></td>
+<td>返回指定键的值，如果值不在字典中返回default值</td>
+</tr>
+<tr>
+<td><code>dict.has_key(key)</code></td>
+<td>如果键在字典dict里返回true，否则返回false</td>
+</tr>
+<tr>
+<td><code>dict.items()</code></td>
+<td>以列表返回可遍历的(键,  值) 元组数组</td>
+</tr>
+<tr>
+<td><code>dict.keys()</code></td>
+<td>以列表返回一个字典所有的键</td>
+</tr>
+<tr>
+<td><code>dict.setdefault(key,  default=None)</code></td>
+<td>和get()类似, 但如果键不存在于字典中，将会添加键并将值设为default</td>
+</tr>
+<tr>
+<td><code>dict.update(dict2)</code></td>
+<td>把字典dict2的键/值对更新到dict里</td>
+</tr>
+<tr>
+<td><code>dict.values()</code></td>
+<td>以列表返回字典中的所有值</td>
+</tr>
+<tr>
+<td><code>pop(key[,default])</code></td>
+<td>删除字典给定键 key  所对应的值，返回值为被删除的值。key值必须给出。 否则，返回default值。</td>
+</tr>
+<tr>
+<td><code>popitem()</code></td>
+<td>返回并删除字典中的最后一对键和值。</td>
+</tr>
+</tbody></table>
+
+        </div>
+        <div>
+            <a href="https://github.com/xiefei-ok/xiefei-ok.github.io/edit/myblog/source/_posts/python-02.md" target="_blank">编辑通道</a>
+        </div>
+</article>
+<!-- disqus 评论系统部分 -->
+
+        <!-- Gitalk部分 -->
+        
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+            <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+            <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+            <div id="gitalk-container"></div>
+            <script type="text/javascript">
+                var gitalk = new Gitalk({
+                    clientID: 'f3798d7d06bc21e9f44b',
+                    clientSecret: '822c1e66b03c458404071a9bf8fb7101cf61ee80',
+                    id: md5(window.location.pathname),
+                    repo: 'xiefei-ok.github.io',
+                    owner: 'xiefei-ok',
+                    admin: 'xiefei-ok',
+                    distractionFreeMode: ''
+                })
+                gitalk.render('gitalk-container')
+            </script>
+            
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%97%E8%A1%A8"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%85%83%E7%BB%84"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 元组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AD%97%E5%85%B8"><span class="toc-number">1.0.3.</span> <span class="toc-text">3. 字典</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/03/06/python-02/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/03/06/python-02/&text=python基础知识-02"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/03/06/python-02/&is_video=false&description=python基础知识-02"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=python基础知识-02&body=Check out this article: http://example.com/2021/03/06/python-02/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/03/06/python-02/&title=python基础知识-02"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/03/06/python-02/&name=python基础知识-02&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/03/06/python-02/&t=python基础知识-02"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    which_fly
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+        
+
+                    
+
+                                                <!-- clipboard -->
+                                                
+                                                    
+                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                                                            
+                                                                        <script type="text/javascript">
+                                                                            $(function() {
+                                                                                // copy-btn HTML
+                                                                                var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+                                                                                btn += '<i class="far fa-clone"></i>';
+                                                                                btn += '</span>';
+                                                                                // mount it!
+                                                                                $(".highlight table").before(btn);
+                                                                                var clip = new ClipboardJS('.btn-copy', {
+                                                                                    text: function(trigger) {
+                                                                                        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                                                                    }
+                                                                                });
+                                                                                clip.on('success', function(e) {
+                                                                                    e.trigger.setAttribute('aria-label', "复制成功!");
+                                                                                    e.clearSelection();
+                                                                                })
+                                                                            })
+                                                                        </script>
+                                                                        
+                                                                            
+<script src="/js/main.js"></script>
+
+                                                                                <!-- search -->
+                                                                                
+                                                                                            <!-- Google Analytics -->
+                                                                                            
+                                                                                                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+                                                                                                <script>
+                                                                                                    window.dataLayer = window.dataLayer || [];
+
+                                                                                                    function gtag() {
+                                                                                                        dataLayer.push(arguments);
+                                                                                                    }
+                                                                                                    gtag('js', new Date());
+                                                                                                    gtag('config', 'UA-86660611-1');
+                                                                                                </script>
+                                                                                                
+                                                                                                    <!-- Baidu Analytics -->
+                                                                                                    
+                                                                                                        <script type="text/javascript">
+                                                                                                            var _hmt = _hmt || [];
+                                                                                                            (function() {
+                                                                                                                var hm = document.createElement("script");
+                                                                                                                hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+                                                                                                                var s = document.getElementsByTagName("script")[0];
+                                                                                                                s.parentNode.insertBefore(hm, s);
+                                                                                                            })();
+                                                                                                        </script>
+                                                                                                        
+                                                                                                            <!-- Cloudflare Analytics -->
+                                                                                                            
+                                                                                                                <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0dabb6e21848405483a237e6a7b6ed04"}'></script>
+                                                                                                                
+                                                                                                                    <!-- Umami Analytics -->
+                                                                                                                    
+                                                                                                                        <script async defer data-website-id="e77e68be-f6e4-4br3-9365-2b76b57cd571" src="https://analytics.domain.com/umami.js"></script>
+                                                                                                                        
+                                                                                                                            <!-- Disqus Comments -->
+                                                                                                                            
+</body>
+</html>

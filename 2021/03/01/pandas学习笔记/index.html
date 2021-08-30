@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="pandas学习笔记1.批量读取csv文件1234567891011121314151617import pandas as pdimport numpy as npimport glob,os,repath&#x3D;r&amp;#x27;D:&#x2F;data&amp;#x27;    #批量表格所在文件路径file&#x3D;glob.glob(os.path.join(path, &quot;HIST_DMIND_MERGE_201">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas学习笔记">
+<meta property="og:url" content="http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Flynn的小屋">
+<meta property="og:description" content="pandas学习笔记1.批量读取csv文件1234567891011121314151617import pandas as pdimport numpy as npimport glob,os,repath&#x3D;r&amp;#x27;D:&#x2F;data&amp;#x27;    #批量表格所在文件路径file&#x3D;glob.glob(os.path.join(path, &quot;HIST_DMIND_MERGE_201">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-28T18:06:53.000Z">
+<meta property="article:modified_time" content="2021-04-13T18:33:30.297Z">
+<meta property="article:author" content="which_fly">
+<meta property="article:tag" content="pandas">
+<meta name="twitter:card" content="summary">
+        
+            
+                
+                    
+                                        <link rel="shortcut icon" href="/images/favicon.ico">
+                                        
+                                            
+                                                
+                                                    
+                                                                        <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+                                                                        
+                                                                            
+                                                                                
+                                                                                    
+                                                                                                        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+                                                                                                        
+                                                                                                            
+                                                                                                                
+                                                                                                                    <!-- title -->
+                                                                                                                    <title>
+                                                                                                                        pandas学习笔记
+                                                                                                                    </title>
+                                                                                                                    <!-- styles -->
+                                                                                                                    
+<link rel="stylesheet" href="/css/style.css">
+
+                                                                                                                        <!-- persian styles -->
+                                                                                                                        
+                                                                                                                                    <!-- rss -->
+                                                                                                                                    
+                                                                                                                                                
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇 " href="/2021/03/05/python-01/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/2021/02/19/hello-world/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&text=pandas学习笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&is_video=false&description=pandas学习笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=pandas学习笔记&body=Check out this article: http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&name=pandas学习笔记&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&t=pandas学习笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">pandas学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96csv%E6%96%87%E4%BB%B6"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.批量读取csv文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A1%A8%E5%90%88%E5%B9%B6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.表合并</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        
+    <h1 class="posttitle" itemprop="name headline">
+        pandas学习笔记
+    </h1>
+
+
+
+            <div class="meta">
+                <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">which_fly</span>
+                </span>
+                
+    <div class="postdate">
+      
+        <time datetime="2021-02-28T18:06:53.000Z" itemprop="datePublished">2021-03-01</time>
+        
+        (Updated: <time datetime="2021-04-13T18:33:30.297Z" itemprop="dateModified">2021-04-14</time>)
+        
+      
+    </div>
+
+
+                    
+
+                        
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/pandas/" rel="tag">pandas</a>
+    </div>
+
+
+            </div>
+    </header>
+    
+
+        <div class="content" itemprop="articleBody">
+            <h1 id="pandas学习笔记"><a href="#pandas学习笔记" class="headerlink" title="pandas学习笔记"></a>pandas学习笔记</h1><h3 id="1-批量读取csv文件"><a href="#1-批量读取csv文件" class="headerlink" title="1.批量读取csv文件"></a>1.批量读取csv文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> glob,os,re</span><br><span class="line"></span><br><span class="line">path=<span class="string">r&#x27;D:/data&#x27;</span>    <span class="comment">#批量表格所在文件路径</span></span><br><span class="line">file=glob.glob(os.path.join(path, <span class="string">&quot;HIST_DMIND_MERGE_201809**.csv&quot;</span>))   <span class="comment">#每一个表格相同名称部分</span></span><br><span class="line"><span class="built_in">print</span>(file)</span><br><span class="line">dl= []</span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> file:</span><br><span class="line">dl.append(pd.read_csv(f,index_col=<span class="literal">None</span>,encoding=<span class="string">&#x27;ANSI&#x27;</span>))   <span class="comment">#读取每个表格</span></span><br><span class="line">df=pd.concat(dl)   <span class="comment">#合并</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二种方法</span></span><br><span class="line">os.chdir(<span class="string">r&#x27;Y:..\CA_MCMC_Worldpop_1km\pop_to_grid&#x27;</span>)  <span class="comment"># 所在文件夹</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> os.listdir():</span><br><span class="line">    df = pd.read_csv(file).rename(columns=&#123;<span class="string">&#x27;value&#x27;</span>:re.findall(<span class="string">&#x27;\d+&#x27;</span>,file)[<span class="number">0</span>]&#125;).set_index(<span class="string">&#x27;id&#x27;</span>)</span><br><span class="line">    final = pd.concat([final,df],axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-表合并"><a href="#2-表合并" class="headerlink" title="2.表合并"></a>2.表合并</h3><ul>
+<li><p>concat（沿轴合并——就硬拼在一起）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">concat(objs, axis=<span class="number">0</span>, join=<span class="string">&#x27;outer&#x27;</span>, join_axes=<span class="literal">None</span>, ignore_index=<span class="literal">False</span>, keys=<span class="literal">None</span>, levels=<span class="literal">None</span>, names=<span class="literal">None</span>, verify_integrity=<span class="literal">False</span>, sort=<span class="literal">None</span>, copy=<span class="literal">True</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>objs:需要连接到 对象集合，一般是列表或字典；</li>
+<li>axis：连接轴向（默认为axis=0）；</li>
+<li>join：参数为outer或inner；</li>
+<li>join_axes=[]：指定自定义的索引，axis=1的时候，outer和inner可以理解为索引的并交集；</li>
+<li>keys=[]：创建层次化索引；</li>
+<li>ignore_index = True：重建索引；</li>
+<li>names：列命名。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>merge（通过键拼接列——表连接）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">merge(left, right, how=<span class="string">&#x27;inner&#x27;</span>, on=<span class="literal">None</span>, left_on=<span class="literal">None</span>, right_on=<span class="literal">None</span>, left_index=<span class="literal">False</span>, right_index=<span class="literal">False</span>, sort=<span class="literal">False</span>, suffixes=(<span class="string">&#x27;_x&#x27;</span>, <span class="string">&#x27;_y&#x27;</span>), copy=<span class="literal">True</span>, indicator=<span class="literal">False</span>, validate=<span class="literal">None</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ol>
+<li>left和right：两个不同的Dataframe，右边有时候也可以为Series；</li>
+<li>how：{‘left’，’right’，’outer’，’inner’},default为’inner’;</li>
+<li>on：指的是用于连接的列索引名称，必须存在于左右两个dataframe中，如果没有指定且其他的参数也没有指定，则以两个dataframe列名交集作为连接键；</li>
+<li>left_on:左侧dataframe中用于连接键的列名；</li>
+<li>right_on：右侧dataframe中用于连接键的列名；</li>
+<li>left_index：使用左侧dataframe中行索引作为连接键；</li>
+<li>right_index：使用左侧dataframe中行索引作为连接键；</li>
+</ol>
+</blockquote>
+</li>
+<li><p>join（主要用于索引上的合并——基于索引的表连接）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">join(self, other, on=<span class="literal">None</span>, how=<span class="string">&#x27;left&#x27;</span>, lsuffix=<span class="string">&#x27;&#x27;</span>, rsuffix=<span class="string">&#x27;&#x27;</span>, sort=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>join是DataFrame的方法，只能pd.DataFrame.join</p>
+</blockquote>
+</li>
+</ul>
+
+        </div>
+        <div>
+            <a href="https://github.com/xiefei-ok/xiefei-ok.github.io/edit/myblog/source/_posts/pandas学习笔记.md" target="_blank">编辑通道</a>
+        </div>
+</article>
+<!-- disqus 评论系统部分 -->
+
+        <!-- Gitalk部分 -->
+        
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+            <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+            <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.min.js"></script>
+            <div id="gitalk-container"></div>
+            <script type="text/javascript">
+                var gitalk = new Gitalk({
+                    clientID: 'f3798d7d06bc21e9f44b',
+                    clientSecret: '822c1e66b03c458404071a9bf8fb7101cf61ee80',
+                    id: md5(window.location.pathname),
+                    repo: 'xiefei-ok.github.io',
+                    owner: 'xiefei-ok',
+                    admin: 'xiefei-ok',
+                    distractionFreeMode: ''
+                })
+                gitalk.render('gitalk-container')
+            </script>
+            
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">pandas学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%B9%E9%87%8F%E8%AF%BB%E5%8F%96csv%E6%96%87%E4%BB%B6"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.批量读取csv文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%A1%A8%E5%90%88%E5%B9%B6"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.表合并</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&text=pandas学习笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&is_video=false&description=pandas学习笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=pandas学习笔记&body=Check out this article: http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&title=pandas学习笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&name=pandas学习笔记&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/03/01/pandas%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/&t=pandas学习笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2021
+    which_fly
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/projects_url">项目</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+        
+
+                    
+
+                                                <!-- clipboard -->
+                                                
+                                                    
+                                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                                                            
+                                                                        <script type="text/javascript">
+                                                                            $(function() {
+                                                                                // copy-btn HTML
+                                                                                var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+                                                                                btn += '<i class="far fa-clone"></i>';
+                                                                                btn += '</span>';
+                                                                                // mount it!
+                                                                                $(".highlight table").before(btn);
+                                                                                var clip = new ClipboardJS('.btn-copy', {
+                                                                                    text: function(trigger) {
+                                                                                        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                                                                    }
+                                                                                });
+                                                                                clip.on('success', function(e) {
+                                                                                    e.trigger.setAttribute('aria-label', "复制成功!");
+                                                                                    e.clearSelection();
+                                                                                })
+                                                                            })
+                                                                        </script>
+                                                                        
+                                                                            
+<script src="/js/main.js"></script>
+
+                                                                                <!-- search -->
+                                                                                
+                                                                                            <!-- Google Analytics -->
+                                                                                            
+                                                                                                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86660611-1"></script>
+                                                                                                <script>
+                                                                                                    window.dataLayer = window.dataLayer || [];
+
+                                                                                                    function gtag() {
+                                                                                                        dataLayer.push(arguments);
+                                                                                                    }
+                                                                                                    gtag('js', new Date());
+                                                                                                    gtag('config', 'UA-86660611-1');
+                                                                                                </script>
+                                                                                                
+                                                                                                    <!-- Baidu Analytics -->
+                                                                                                    
+                                                                                                        <script type="text/javascript">
+                                                                                                            var _hmt = _hmt || [];
+                                                                                                            (function() {
+                                                                                                                var hm = document.createElement("script");
+                                                                                                                hm.src = "https://hm.baidu.com/hm.js?2e6da3c375c8a87f5b664cea6d4cb29c";
+                                                                                                                var s = document.getElementsByTagName("script")[0];
+                                                                                                                s.parentNode.insertBefore(hm, s);
+                                                                                                            })();
+                                                                                                        </script>
+                                                                                                        
+                                                                                                            <!-- Cloudflare Analytics -->
+                                                                                                            
+                                                                                                                <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0dabb6e21848405483a237e6a7b6ed04"}'></script>
+                                                                                                                
+                                                                                                                    <!-- Umami Analytics -->
+                                                                                                                    
+                                                                                                                        <script async defer data-website-id="e77e68be-f6e4-4br3-9365-2b76b57cd571" src="https://analytics.domain.com/umami.js"></script>
+                                                                                                                        
+                                                                                                                            <!-- Disqus Comments -->
+                                                                                                                            
+</body>
+</html>

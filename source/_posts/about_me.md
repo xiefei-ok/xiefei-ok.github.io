@@ -4,14 +4,13 @@ date: 2021-08-30 12:06:53
 tags: no
 ---
 
-<meta name="referrer" content="no-referrer" />
 
 # 1. tableau 部分成果展示
 https://public.tableau.com/app/profile/xiefei
 
 *该项目细节做了一些数据脱敏处理*
-
-![sheet1](About_me\sheet1.jpg)
+{% asset_img sheet1.jpg This is an test image %}
+![sheet1](\images\sheet1.jpg)
 
 ![sheet2](About_me\sheet2.jpg)
 

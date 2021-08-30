@@ -2,9 +2,8 @@
 https://public.tableau.com/app/profile/xiefei
 
 *该项目细节做了一些数据脱敏处理*
-{% sheet1.jpg This is an example image %}
 
-![sheet1](sheet1.jpg)
+![sheet1](source\images\sheet1.jpg)
 
 ![sheet2](sheet2.jpg)
 

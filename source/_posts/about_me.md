@@ -1,7 +1,7 @@
 ---
-title: pandas学习笔记
-date: 2021-03-01 02:06:53
-tags: pandas
+title: about me
+date: 2021-08-30 12:06:53
+tags: no
 ---
 
 <meta name="referrer" content="no-referrer" />

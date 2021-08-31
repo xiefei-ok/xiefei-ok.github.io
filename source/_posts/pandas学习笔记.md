@@ -67,4 +67,4 @@ for file in os.listdir():
   join(self, other, on=None, how='left', lsuffix='', rsuffix='', sort=False)
   ```
 
-  > join是DataFrame的方法，只能pd.DataFrame.join
+  > join不是DataFrame的方法，而是pandas的方法，所以只能用pd.DataFrame.join
